@@ -1,91 +1,100 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Магія числа π</title>
-
 <style>
-
 body{
-margin:0;
-font-family:Georgia, serif;
-background:linear-gradient(#f7f9ff,#e5ecff);
-color:#222;
-text-align:center;
+  margin:0;
+  font-family:Georgia, serif;
+  background:linear-gradient(#f7f9ff,#e5ecff);
+  color:#222;
+  text-align:center;
 }
-
 header{
-padding:80px 20px;
+  padding:80px 20px;
+  position:relative;
 }
-
 h1{
-font-size:55px;
-margin:0;
+  font-size:55px;
+  margin:0;
 }
-
 h2{
-margin-top:10px;
-color:#444;
+  margin-top:10px;
+  color:#444;
 }
-
 section{
-max-width:1000px;
-margin:auto;
-padding:30px;
+  max-width:1000px;
+  margin:auto;
+  padding:30px;
 }
-
 .card{
-background:white;
-padding:35px;
-margin:30px 0;
-border-radius:15px;
-box-shadow:0 15px 35px rgba(0,0,0,0.1);
+  background:white;
+  padding:35px;
+  margin:30px 0;
+  border-radius:15px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.1);
 }
-
 button{
-padding:12px 25px;
-border:none;
-border-radius:10px;
-background:#5c6cff;
-color:white;
-font-size:16px;
-cursor:pointer;
-margin:10px;
-transition:0.2s;
+  padding:12px 25px;
+  border:none;
+  border-radius:10px;
+  background:#5c6cff;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  margin:10px;
+  transition:0.2s;
 }
-
 button:hover{
-transform:scale(1.05);
-background:#4152ff;
+  transform:scale(1.05);
+  background:#4152ff;
 }
-
 .pi-digits{
-font-family:monospace;
-word-break:break-all;
-margin-top:15px;
+  font-family:monospace;
+  word-break:break-all;
+  margin-top:15px;
 }
-
 .quiz button{
-display:block;
-margin:10px auto;
+  display:block;
+  margin:10px auto;
 }
-
 #gameNumber{
-font-size:30px;
-letter-spacing:4px;
-margin:20px 0;
+  font-size:30px;
+  letter-spacing:4px;
+  margin:20px 0;
 }
 
+/* картинки в header зліва і справа */
+.header-img{
+  position:absolute;
+  top:10px;
+  width:200px; /* збільшили розмір */
+  height:auto;
+  z-index:10;
+  opacity:0.9;
+  transition:0.3s;
+}
+.header-img:hover{
+  opacity:1;
+  transform:scale(1.05);
+}
+.header-img.left{
+  left:20px;
+}
+.header-img.right{
+  right:20px;
+}
 </style>
-
 </head>
-
 <body>
 
 <header>
+<!-- Картинка зліва -->
+<img src="magic-left.png" alt="Магія ліворуч" class="header-img left">
+<!-- Картинка справа -->
+<img src="magic-right.png" alt="Магія праворуч" class="header-img right">
 
 <h1>Школа магів і чарівників</h1>
 <h2>Таємниці числа π</h2>
@@ -95,87 +104,57 @@ margin:20px 0;
 Одним з найбільш загадкових є число π.
 </p>
 
-<!-- Кнопка для музики -->
+<!-- Кнопка музики -->
 <button onclick="playMusic()">🔊 Увімкнути магічну музику</button>
 <audio id="music" loop>
-<source src="music.mp3" type="audio/mpeg">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
-
 </header>
 
 <section>
 
 <div class="card">
-
 <h2>Що таке π</h2>
-
 <p>π — це відношення довжини кола до його діаметра.</p>
-
 <p>Його значення приблизно дорівнює:</p>
-
 <b>3.141592653589793...</b>
-
 <p>Це число нескінченне і не має повторюваного шаблону.</p>
-
 </div>
 
 <div class="card">
-
 <h2>Цікаві факти</h2>
-
 <button onclick="fact()">Випадковий факт</button>
-
 <p id="factText"></p>
-
 </div>
 
 <div class="card">
-
 <h2>Генератор цифр π</h2>
-
 <button onclick="generate()">Згенерувати 500 цифр</button>
-
 <div class="pi-digits" id="digits"></div>
-
 </div>
 
 <div class="card quiz">
-
 <h2>Математична вікторина</h2>
-
 <p>Скільки приблизно дорівнює π?</p>
-
 <button onclick="answer(false)">3.12</button>
 <button onclick="answer(true)">3.14</button>
 <button onclick="answer(false)">3.41</button>
-
 <p id="quizResult"></p>
-
 </div>
 
 <div class="card">
-
 <h2>Міні-гра: запам'ятай π</h2>
-
 <p>Запам'ятай цифри:</p>
-
 <div id="gameNumber"></div>
-
 <input id="gameInput" placeholder="введи число">
-
 <br>
-
 <button onclick="startGame()">Нове число</button>
 <button onclick="checkGame()">Перевірити</button>
-
 <p id="gameResult"></p>
-
 </div>
 
 <div class="card">
-
 <h2>10 цікавих фактів про π</h2>
-
 <p>π використовували ще 4000 років тому.</p>
 <p>Архімед одним із перших точно обчислив π.</p>
 <p>Комп'ютери знають трильйони цифр π.</p>
@@ -186,47 +165,32 @@ margin:20px 0;
 <p>Деякі люди пам'ятають понад 70000 цифр π.</p>
 <p>π використовується у комп'ютерній графіці.</p>
 <p>Це одне з найвідоміших чисел у світі.</p>
-
 </div>
 
 <div class="card">
-
 <h2>Ще один тест</h2>
-
 <p>Хто першим обчислив π з високою точністю?</p>
-
 <button onclick="quiz2(false)">Піфагор</button>
 <button onclick="quiz2(true)">Архімед</button>
 <button onclick="quiz2(false)">Ньютон</button>
-
 <p id="quiz2result"></p>
-
 </div>
 
 <div class="card">
-
 <h2>Нескінченність π</h2>
-
 <p>Подивись як з'являються цифри числа π</p>
-
 <p id="piAnimation"></p>
-
 </div>
 
 <div class="card">
-
 <h2>Магія π</h2>
-
 <button onclick="magic()">Відкрити магію</button>
-
 <p id="magicText"></p>
-
 </div>
 
 </section>
 
 <script>
-
 /* факти */
 const facts=[
 "π використовують вже понад 4000 років",
@@ -235,10 +199,8 @@ const facts=[
 "Альберт Ейнштейн народився у день π",
 "у цифрах π можна знайти майже будь-яку послідовність"
 ]
-
 function fact(){
-document.getElementById("factText")
-.innerText=facts[Math.floor(Math.random()*facts.length)]
+document.getElementById("factText").innerText=facts[Math.floor(Math.random()*facts.length)]
 }
 
 /* генератор цифр */
@@ -267,23 +229,6 @@ document.getElementById("gameResult").innerText=
 val===current?"Вірно!":"Спробуй ще"
 }
 
-/* рекорди */
-function addScore(){
-let name=document.getElementById("name").value
-let score=document.getElementById("score").value
-let li=document.createElement("li")
-li.innerText=name+" — "+score
-document.getElementById("leaderboard").appendChild(li)
-}
-
-/* випадковий π */
-function randomPi(){
-let digits=""
-for(let i=0;i<20;i++)
-digits+=Math.floor(Math.random()*10)
-document.getElementById("randomPiResult").innerText="3."+digits
-}
-
 /* тест */
 function quiz2(correct){
 document.getElementById("quiz2result").innerText=
@@ -310,13 +255,8 @@ window.open("https://www.mypiday.com/", "_blank");
 /* музика */
 function playMusic(){
 let music = document.getElementById("music")
-if(music.paused){
-music.play()
-}else{
-music.pause()
+if(music.paused){ music.play() }else{ music.pause() }
 }
-}
-
 </script>
 
 </body>
