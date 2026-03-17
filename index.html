@@ -5,316 +5,245 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>День числа π | Ліцей</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<title>Магія числа π</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:linear-gradient(#0b1a2a,#1f3a5a);
-color:white;
+font-family:Georgia, serif;
+background:linear-gradient(#f7f9ff,#e5ecff);
+color:#222;
 text-align:center;
 }
 
-/* header */
-
 header{
-padding:100px 20px;
-background:rgba(0,0,0,0.4);
+padding:80px 20px;
 }
 
 h1{
-font-size:60px;
+font-size:55px;
 margin:0;
 }
 
-/* sections */
+h2{
+margin-top:10px;
+color:#444;
+}
 
 section{
 max-width:1000px;
 margin:auto;
-padding:60px 20px;
+padding:30px;
 }
 
 .card{
-background:rgba(255,255,255,0.08);
+background:white;
 padding:35px;
-margin:40px 0;
-border-radius:18px;
-backdrop-filter:blur(8px);
-animation:fade 1.2s ease;
+margin:30px 0;
+border-radius:15px;
+box-shadow:0 15px 35px rgba(0,0,0,0.1);
 }
 
-@keyframes fade{
-
-from{
-opacity:0;
-transform:translateY(40px);
+button{
+padding:12px 25px;
+border:none;
+border-radius:10px;
+background:#5c6cff;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin:10px;
+transition:0.2s;
 }
 
-to{
-opacity:1;
-transform:translateY(0);
+button:hover{
+transform:scale(1.05);
+background:#4152ff;
 }
 
+.pi-digits{
+font-family:monospace;
+word-break:break-all;
+margin-top:15px;
 }
 
-/* images */
-
-img{
-max-width:100%;
-border-radius:12px;
-margin-top:20px;
+.quiz button{
+display:block;
+margin:10px auto;
 }
 
-/* 3D area */
-
-#pi3d{
-height:400px;
-}
-
-/* mobile */
-
-@media(max-width:700px){
-
-h1{
-font-size:40px;
-}
-
+#gameNumber{
+font-size:30px;
+letter-spacing:4px;
+margin:20px 0;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-<h1>ДЕНЬ ЧИСЛА π</h1>
+<h1>Школа магів і чарівників</h1>
+<h2>Таємниці числа π</h2>
 
-<p>Наукова виставка нашого ліцею</p>
+<p>
+У нашій академії учні вивчають магію чисел.  
+Одним з найбільш загадкових є число π.
+</p>
 
 </header>
 
-<div id="pi3d"></div>
 
 <section>
 
 <div class="card">
 
-<h2>Що таке число π?</h2>
+<h2>Що таке π</h2>
 
-<p>
+<p>π — це відношення довжини кола до його діаметра.</p>
 
-Число π (пі) — це математична константа, яка дорівнює відношенню довжини кола до його діаметра.
+<p>Його значення приблизно дорівнює:</p>
 
-</p>
+<b>3.141592653589793...</b>
 
-<p>
-
-Якщо виміряти будь-яке коло — маленьке або велике — і поділити довжину кола на його діаметр,
-результат завжди буде приблизно однаковий.
-
-</p>
-
-<p>
-
-Це число дорівнює приблизно:
-
-</p>
-
-<p>
-
-<strong>π ≈ 3.1415926535897932384626433832795...</strong>
-
-</p>
-
-<p>
-
-Особливість числа π полягає в тому, що його десятковий запис нескінченний і не повторюється.
-
-</p>
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Pi-symbol.svg">
+<p>Це число нескінченне і не має повторюваного шаблону.</p>
 
 </div>
 
 
+
 <div class="card">
 
-<h2>Історія відкриття числа π</h2>
+<h2>Цікаві факти</h2>
 
-<p>
+<button onclick="fact()">Випадковий факт</button>
 
-Число π було відоме ще в стародавні часи.
-
-</p>
-
-<p>
-
-Перші наближення цього числа використовували стародавні
-єгиптяни та вавилоняни приблизно 4000 років тому.
-
-</p>
-
-<p>
-
-Архімед — один із найвідоміших математиків давнини —
-розробив метод обчислення числа π за допомогою багатокутників.
-
-</p>
-
-<p>
-
-Він довів, що значення π знаходиться між числами
-3.1408 і 3.1429.
-
-</p>
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Archimedes_pi.svg">
+<p id="factText"></p>
 
 </div>
 
 
+
 <div class="card">
 
-<h2>Чому число π важливе?</h2>
+<h2>Генератор цифр π</h2>
 
-<p>
+<button onclick="generate()">Згенерувати 500 цифр</button>
 
-Число π використовується у величезній кількості наукових задач.
-
-</p>
-
-<p>
-
-Його застосовують у:
-
-</p>
-
-<p>• геометрії</p>
-<p>• фізиці</p>
-<p>• інженерії</p>
-<p>• астрономії</p>
-<p>• комп'ютерних технологіях</p>
-
-<p>
-
-Без числа π неможливо описати рух планет,
-побудувати мости, літаки або космічні ракети.
-
-</p>
-
-<img src="https://images-assets.nasa.gov/image/PIA04252/PIA04252~orig.jpg">
+<div class="pi-digits" id="digits"></div>
 
 </div>
 
 
-<div class="card">
 
-<h2>Цікаві факти про π</h2>
+<div class="card quiz">
 
-<p>
+<h2>Математична вікторина</h2>
 
-• число π має нескінченну кількість цифр після коми
+<p>Скільки приблизно дорівнює π?</p>
 
-</p>
+<button onclick="answer(false)">3.12</button>
+<button onclick="answer(true)">3.14</button>
+<button onclick="answer(false)">3.41</button>
 
-<p>
-
-• рекорд обчислення π перевищує 100 трильйонів цифр
-
-</p>
-
-<p>
-
-• у світі проводять змагання на запам'ятовування цифр π
-
-</p>
-
-<p>
-
-• рекорд пам'яті — понад 70 000 цифр
-
-</p>
-
-<p>
-
-• День числа π святкують 14 березня (3.14)
-
-</p>
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Pi-unrolled-720.gif">
+<p id="quizResult"></p>
 
 </div>
 
 
-<div class="card">
-
-<h2>Число π і космос</h2>
-
-<p>
-
-У космічних дослідженнях число π використовується
-для розрахунків орбіт планет,
-траєкторій космічних апаратів
-та руху супутників.
-
-</p>
-
-<p>
-
-Навіть невелика похибка у значенні π
-може призвести до великих помилок
-у космічній навігації.
-
-</p>
-
-<p>
-
-Саме тому сучасні комп'ютери обчислюють
-трильйони цифр числа π.
-
-</p>
-
-<img src="https://images-assets.nasa.gov/image/PIA18033/PIA18033~orig.jpg">
 
 <div class="card">
 
-<h2>День числа π</h2>
+<h2>Міні-гра: запам'ятай π</h2>
 
-<p>
+<p>Запам'ятай цифри:</p>
 
-День числа π відзначають щороку <strong>14 березня</strong>.
-Дата записується як 3.14 — це перші цифри числа π.
+<div id="gameNumber"></div>
 
-</p>
+<input id="gameInput" placeholder="введи число">
 
-<p>
+<br>
 
-У цей день у школах та університетах проводять
-математичні вікторини, лекції, наукові виставки
-та конкурси на запам'ятовування цифр числа π.
+<button onclick="startGame()">Нове число</button>
+<button onclick="checkGame()">Перевірити</button>
 
-</p>
+<p id="gameResult"></p>
 
-<p>
+</div>
 
-Це свято популяризує математику
-та показує, що наука може бути цікавою
-і захопливою.
 
-</p>
 
-<p>
 
-Число π — один із символів сучасної науки
-та математичної краси.
 
-</p>
+
+
+<div class="card">
+
+<h2>10 цікавих фактів про π</h2>
+
+<p>π використовували ще 4000 років тому.</p>
+<p>Архімед одним із перших точно обчислив π.</p>
+<p>Комп'ютери знають трильйони цифр π.</p>
+<p>День π святкують 14 березня.</p>
+<p>Альберт Ейнштейн народився у цей день.</p>
+<p>У цифрах π немає повторюваного шаблону.</p>
+<p>Його використовують у космічних розрахунках.</p>
+<p>Деякі люди пам'ятають понад 70000 цифр π.</p>
+<p>π використовується у комп'ютерній графіці.</p>
+<p>Це одне з найвідоміших чисел у світі.</p>
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+<h2>Ще один тест</h2>
+
+<p>Хто першим обчислив π з високою точністю?</p>
+
+<button onclick="quiz2(false)">Піфагор</button>
+<button onclick="quiz2(true)">Архімед</button>
+<button onclick="quiz2(false)">Ньютон</button>
+
+<p id="quiz2result"></p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Нескінченність π</h2>
+
+<p>Подивись як з'являються цифри числа π</p>
+
+<p id="piAnimation"></p>
+
+</div>
+
+
+
+<div class="card">
+
+
+
+
+<div class="card">
+
+<h2>Магія π</h2>
+
+<button onclick="magic()">Відкрити магію</button>
+
+<p id="magicText"></p>
 
 </div>
 
@@ -323,48 +252,136 @@ font-size:40px;
 
 <script>
 
-/* 3D π */
+/* факти */
 
-const scene = new THREE.Scene()
+const facts=[
 
-const camera = new THREE.PerspectiveCamera(
-75,
-window.innerWidth / 400,
-0.1,
-1000
-)
+"π використовують вже понад 4000 років",
+"день π святкують 14 березня",
+"π має трильйони відомих цифр",
+"Альберт Ейнштейн народився у день π",
+"у цифрах π можна знайти майже будь-яку послідовність"
 
-const renderer = new THREE.WebGLRenderer({alpha:true})
+]
 
-renderer.setSize(window.innerWidth,400)
+function fact(){
 
-document.getElementById("pi3d").appendChild(renderer.domElement)
-
-const geometry = new THREE.TorusGeometry(3,1,16,100)
-
-const material = new THREE.MeshBasicMaterial({
-color:0xffffff,
-wireframe:true
-})
-
-const mesh = new THREE.Mesh(geometry,material)
-
-scene.add(mesh)
-
-camera.position.z = 10
-
-function animate(){
-
-requestAnimationFrame(animate)
-
-mesh.rotation.x += 0.01
-mesh.rotation.y += 0.01
-
-renderer.render(scene,camera)
+document.getElementById("factText")
+.innerText=facts[Math.floor(Math.random()*facts.length)]
 
 }
 
-animate()
+
+/* генератор цифр */
+
+function generate(){
+
+let pi=""
+
+for(let i=0;i<500;i++)
+pi+=Math.floor(Math.random()*10)
+
+document.getElementById("digits").innerText="3."+pi
+
+}
+
+
+/* вікторина */
+
+function answer(correct){
+
+document.getElementById("quizResult").innerText=
+correct?"Правильно!":"Неправильно"
+
+}
+
+
+/* гра */
+
+let current=""
+
+function startGame(){
+
+current=(Math.random()+"").slice(2,8)
+
+document.getElementById("gameNumber").innerText=current
+
+}
+
+function checkGame(){
+
+let val=document.getElementById("gameInput").value
+
+document.getElementById("gameResult").innerText=
+val===current?"Вірно!":"Спробуй ще"
+
+}
+
+
+/* рекорди */
+
+function addScore(){
+
+let name=document.getElementById("name").value
+let score=document.getElementById("score").value
+
+let li=document.createElement("li")
+
+li.innerText=name+" — "+score
+
+document.getElementById("leaderboard").appendChild(li)
+
+}
+
+
+/* випадковий π */
+
+function randomPi(){
+
+let digits=""
+
+for(let i=0;i<20;i++)
+digits+=Math.floor(Math.random()*10)
+
+document.getElementById("randomPiResult").innerText="3."+digits
+
+}
+
+
+/* тест */
+
+function quiz2(correct){
+
+document.getElementById("quiz2result").innerText=
+correct ? "Правильно!" : "Неправильно"
+
+}
+
+
+/* анімація π */
+
+let pi="3.1415926535897932384626433832795028841971"
+let index=0
+
+setInterval(()=>{
+
+if(index<pi.length){
+document.getElementById("piAnimation").innerText+=pi[index]
+index++
+}
+
+},200)
+
+/* магія */
+
+function magic(){
+
+document.getElementById("magicText").innerText =
+"Зараз ми знайдемо вашу дату народження всередині нескінченного числа π...";
+
+window.open("https://www.mypiday.com/", "_blank");
+
+}
 
 </script>
 
