@@ -65,7 +65,6 @@ button:hover{
   letter-spacing:4px;
   margin:20px 0;
 }
-
 /* картинки в header зліва і справа */
 .header-img{
   position:absolute;
@@ -86,30 +85,75 @@ button:hover{
 .header-img.right{
   right:20px;
 }
+/* слайдер */
+.slider{
+  position:relative;
+  max-width:900px;
+  margin:20px auto;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+.slide{ display:none; text-align:center; }
+.slide.active{ display:block; }
+.slide img{ width:100%; display:block; border-radius:15px; }
+.slider button{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#5c6cff;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  padding:10px;
+  cursor:pointer;
+}
+.slider button:hover{ background:#4152ff; }
+.slider button:nth-of-type(1){ left:10px; }
+.slider button:nth-of-type(2){ right:10px; }
 </style>
 </head>
 <body>
 
 <header>
-<!-- Картинка зліва -->
 <img src="magic-left.png" alt="Магія ліворуч" class="header-img left">
-<!-- Картинка справа -->
 <img src="magic-right.png" alt="Магія праворуч" class="header-img right">
-
 <h1>Школа магів і чарівників</h1>
 <h2>Таємниці числа π</h2>
-
-<p>
-У нашій академії учні вивчають магію чисел.  
-Одним з найбільш загадкових є число π.
-</p>
-
-<!-- Кнопка музики -->
+<p>У нашій академії учні вивчають магію чисел.  
+Одним з найбільш загадкових є число π.</p>
 <button onclick="playMusic()">🔊 Увімкнути магічну музику</button>
 <audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 </header>
+
+<!-- Слайдер -->
+<div class="slider">
+  <div class="slide active"><img src="slide1.jpg" alt="Слайд 1"></div>
+  <div class="slide"><img src="slide2.jpg" alt="Слайд 2"></div>
+  <div class="slide"><img src="slide3.jpg" alt="Слайд 3"></div>
+  <div class="slide"><img src="slide4.jpg" alt="Слайд 4"></div>
+  <div class="slide"><img src="slide5.jpg" alt="Слайд 5"></div>
+  <div class="slide"><img src="slide6.jpg" alt="Слайд 6"></div>
+  <div class="slide"><img src="slide7.jpg" alt="Слайд 7"></div>
+  <div class="slide"><img src="slide8.jpg" alt="Слайд 8"></div>
+  <div class="slide"><img src="slide9.jpg" alt="Слайд 9"></div>
+  <div class="slide"><img src="slide10.jpg" alt="Слайд 10"></div>
+  <div class="slide"><img src="slide11.jpg" alt="Слайд 11"></div>
+  <div class="slide"><img src="slide12.jpg" alt="Слайд 12"></div>
+  <div class="slide"><img src="slide13.jpg" alt="Слайд 13"></div>
+  <div class="slide"><img src="slide14.jpg" alt="Слайд 14"></div>
+  <div class="slide"><img src="slide15.jpg" alt="Слайд 15"></div>
+  <div class="slide"><img src="slide16.jpg" alt="Слайд 16"></div>
+  <div class="slide"><img src="slide17.jpg" alt="Слайд 17"></div>
+  <div class="slide"><img src="slide18.jpg" alt="Слайд 18"></div>
+  <div class="slide"><img src="slide19.jpg" alt="Слайд 19"></div>
+  <div class="slide"><img src="slide20.jpg" alt="Слайд 20"></div>
+  <div class="slide"><img src="slide21.jpg" alt="Слайд 21"></div>
+  <button onclick="prevSlide()">◀</button>
+  <button onclick="nextSlide()">▶</button>
+</div>
 
 <section>
 
@@ -191,6 +235,23 @@ button:hover{
 </section>
 
 <script>
+/* слайдер */
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+function showSlide(index){
+  slides.forEach(s=> s.classList.remove("active"));
+  slides[index].classList.add("active");
+}
+function nextSlide(){
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+function prevSlide(){
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+}
+showSlide(currentSlide);
+
 /* факти */
 const facts=[
 "π використовують вже понад 4000 років",
@@ -199,9 +260,7 @@ const facts=[
 "Альберт Ейнштейн народився у день π",
 "у цифрах π можна знайти майже будь-яку послідовність"
 ]
-function fact(){
-document.getElementById("factText").innerText=facts[Math.floor(Math.random()*facts.length)]
-}
+function fact(){ document.getElementById("factText").innerText=facts[Math.floor(Math.random()*facts.length)] }
 
 /* генератор цифр */
 function generate(){
