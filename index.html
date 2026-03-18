@@ -69,7 +69,7 @@ button:hover{
 .header-img{
   position:absolute;
   top:10px;
-  width:200px; /* збільшили розмір */
+  width:200px;
   height:auto;
   z-index:10;
   opacity:0.9;
@@ -115,6 +115,21 @@ button:hover{
 </head>
 <body>
 
+<!-- ВІДЕО НА ПОЧАТОК -->
+<div style="position:relative; width:100%; max-height:500px; overflow:hidden;">
+  <video id="introVideo" controls style="width:100%; height:auto;">
+    <source src="intro.mp4" type="video/mp4">
+    Ваш браузер не підтримує відео.
+  </video>
+</div>
+
+<!-- РЕГУЛЯТОР ГУЧНОСТІ МУЗИКИ -->
+<div style="margin:20px auto; text-align:center;">
+  <p>Гучність фонової музики:</p>
+  <input type="range" id="musicVolume" min="0" max="1" step="0.01" value="0.5" 
+         style="width:300px;" oninput="setVolume(this.value)">
+</div>
+
 <header>
 <img src="magic-left.png" alt="Магія ліворуч" class="header-img left">
 <img src="magic-right.png" alt="Магія праворуч" class="header-img right">
@@ -156,7 +171,7 @@ button:hover{
 </div>
 
 <section>
-
+<!-- ВСЯ ІНША СТАРА КОНТЕНТ -->
 <div class="card">
 <h2>Що таке π</h2>
 <p>π — це відношення довжини кола до його діаметра.</p>
@@ -235,7 +250,7 @@ button:hover{
 </section>
 
 <script>
-/* слайдер */
+/* Слайдер */
 let currentSlide = 0;
 const slides = document.querySelectorAll(".slide");
 function showSlide(index){
@@ -252,17 +267,17 @@ function prevSlide(){
 }
 showSlide(currentSlide);
 
-/* факти */
+/* Факти */
 const facts=[
 "π використовують вже понад 4000 років",
 "день π святкують 14 березня",
 "π має трильйони відомих цифр",
 "Альберт Ейнштейн народився у день π",
 "у цифрах π можна знайти майже будь-яку послідовність"
-]
+];
 function fact(){ document.getElementById("factText").innerText=facts[Math.floor(Math.random()*facts.length)] }
 
-/* генератор цифр */
+/* Генератор цифр */
 function generate(){
 let pi=""
 for(let i=0;i<500;i++)
@@ -270,13 +285,13 @@ pi+=Math.floor(Math.random()*10)
 document.getElementById("digits").innerText="3."+pi
 }
 
-/* вікторина */
+/* Вікторина */
 function answer(correct){
 document.getElementById("quizResult").innerText=
 correct?"Правильно!":"Неправильно"
 }
 
-/* гра */
+/* Гра */
 let current=""
 function startGame(){
 current=(Math.random()+"").slice(2,8)
@@ -288,13 +303,13 @@ document.getElementById("gameResult").innerText=
 val===current?"Вірно!":"Спробуй ще"
 }
 
-/* тест */
+/* Тест */
 function quiz2(correct){
 document.getElementById("quiz2result").innerText=
 correct ? "Правильно!" : "Неправильно"
 }
 
-/* анімація π */
+/* Анімація π */
 let pi="3.1415926535897932384626433832795028841971"
 let index=0
 setInterval(()=>{
@@ -304,17 +319,20 @@ index++
 }
 },200)
 
-/* магія */
+/* Магія */
 function magic(){
 document.getElementById("magicText").innerText =
 "Зараз ми знайдемо вашу дату народження всередині нескінченного числа π...";
 window.open("https://www.mypiday.com/", "_blank");
 }
 
-/* музика */
+/* Музика */
 function playMusic(){
 let music = document.getElementById("music")
 if(music.paused){ music.play() }else{ music.pause() }
+}
+function setVolume(val){
+  document.getElementById('music').volume = val;
 }
 </script>
 
