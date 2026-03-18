@@ -5,37 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Магія числа π</title>
 <style>
+/* Загальний стиль */
 body{
   margin:0;
   font-family:Georgia, serif;
-  background:linear-gradient(#f7f9ff,#e5ecff);
   color:#222;
   text-align:center;
 }
+
 header{
   padding:80px 20px;
   position:relative;
 }
+
 h1{
   font-size:55px;
   margin:0;
+  color:white;
+  text-shadow:2px 2px 8px rgba(0,0,0,0.7);
 }
+
 h2{
   margin-top:10px;
-  color:#444;
+  color:white;
+  text-shadow:1px 1px 5px rgba(0,0,0,0.7);
 }
+
 section{
   max-width:1000px;
   margin:auto;
   padding:30px;
 }
+
 .card{
-  background:white;
+  background: rgba(255,255,255,0.9);
   padding:35px;
   margin:30px 0;
   border-radius:15px;
   box-shadow:0 15px 35px rgba(0,0,0,0.1);
 }
+
 button{
   padding:12px 25px;
   border:none;
@@ -51,6 +60,7 @@ button:hover{
   transform:scale(1.05);
   background:#4152ff;
 }
+
 .pi-digits{
   font-family:monospace;
   word-break:break-all;
@@ -65,7 +75,8 @@ button:hover{
   letter-spacing:4px;
   margin:20px 0;
 }
-/* картинки в header зліва і справа */
+
+/* картинки header */
 .header-img{
   position:absolute;
   top:10px;
@@ -79,12 +90,9 @@ button:hover{
   opacity:1;
   transform:scale(1.05);
 }
-.header-img.left{
-  left:20px;
-}
-.header-img.right{
-  right:20px;
-}
+.header-img.left{ left:20px; }
+.header-img.right{ right:20px; }
+
 /* слайдер */
 .slider{
   position:relative;
@@ -115,16 +123,18 @@ button:hover{
 </head>
 <body>
 
-<!-- ВІДЕО НА ПОЧАТОК -->
-<div style="position:relative; width:100%; max-height:500px; overflow:hidden;">
-  <video id="introVideo" controls style="width:100%; height:auto;">
-    <source src="intro.mp4" type="video/mp4">
-    Ваш браузер не підтримує відео.
-  </video>
+<!-- Відео на початку (не фоном) -->
+  <!-- Кнопка для переходу на YouTube -->
+<div style="text-align:center; margin:20px 0;">
+  <button onclick="window.open('https://www.youtube.com/watch?v=VfNF9dQgOnw', '_blank')"
+          style="padding:15px 30px; font-size:18px; border:none; border-radius:10px; background:#ff0000; color:white; cursor:pointer;">
+    Музика числа ПІ
+  </button>
 </div>
 
+
 <!-- РЕГУЛЯТОР ГУЧНОСТІ МУЗИКИ -->
-<div style="margin:20px auto; text-align:center;">
+<div style="margin:20px auto; text-align:center; z-index:10; position:relative;">
   <p>Гучність фонової музики:</p>
   <input type="range" id="musicVolume" min="0" max="1" step="0.01" value="0.5" 
          style="width:300px;" oninput="setVolume(this.value)">
@@ -135,8 +145,7 @@ button:hover{
 <img src="magic-right.png" alt="Магія праворуч" class="header-img right">
 <h1>Школа магів і чарівників</h1>
 <h2>Таємниці числа π</h2>
-<p>У нашій академії учні вивчають магію чисел.  
-Одним з найбільш загадкових є число π.</p>
+<p>У нашій академії учні вивчають магію чисел. Одним з найбільш загадкових є число π.</p>
 <button onclick="playMusic()">🔊 Увімкнути магічну музику</button>
 <audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
@@ -171,7 +180,7 @@ button:hover{
 </div>
 
 <section>
-<!-- ВСЯ ІНША СТАРА КОНТЕНТ -->
+<!-- Контент карток залишився без змін -->
 <div class="card">
 <h2>Що таке π</h2>
 <p>π — це відношення довжини кола до його діаметра.</p>
@@ -310,13 +319,12 @@ correct ? "Правильно!" : "Неправильно"
 }
 
 /* Анімація π */
-let pi="3.1415926535897932384626433832795028841971"
-let index=0
+let piAnim="3.1415926535897932384626433832795028841971";let index=0;
 setInterval(()=>{
-if(index<pi.length){
-document.getElementById("piAnimation").innerText+=pi[index]
-index++
-}
+  if(index<piAnim.length){
+    document.getElementById("piAnimation").innerText+=piAnim[index];
+    index++
+  }
 },200)
 
 /* Магія */
